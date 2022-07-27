@@ -1,24 +1,21 @@
-import "./Form.css";
 import { useState } from "react";
 
-export const Form = ({ addTodo }) => {
-  const [name, setName] = useState("");
+const Form = ({ addTodo }) => {
+  const [userInput, setUserInput] = useState("");
 
   return (
-    <form>
-      <input
-        type="text"
-        placeholder="Faça sua nota aqui..."
-        onChange={(e) => setName(e.target.value)}
-      />
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          addTodo(name);
-        }}
-      >
-        Enviar
-      </button>
-    </form>
+    <>
+      <form onSubmit={(event) => event.preventDefault()}>
+        <input
+          value={userInput}
+          type="text"
+          placeholder="Insira a tarefa"
+          onChange={(event) => setUserInput(event.target.value)}
+        ></input>
+        <button onClick={() => addTodo(userInput)}>Enviar</button>
+      </form>
+    </>
   );
 };
+
+export default Form;
